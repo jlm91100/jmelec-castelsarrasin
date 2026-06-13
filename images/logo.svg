@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" width="210" height="60">
+  <!-- Fond noir -->
+  <rect width="420" height="120" fill="#000000" rx="4"/>
+  <!-- JM en jaune -->
+  <text x="16" y="78" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="72" fill="#F5A800" letter-spacing="-2">JM</text>
+  <!-- Éclair dans le M (triangle stylisé) -->
+  <polygon points="118,18 98,62 114,62 94,98 134,50 116,50" fill="#000000"/>
+  <!-- Tiret -->
+  <text x="152" y="78" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="72" fill="#F5A800">-</text>
+  <!-- ELEC en blanc -->
+  <text x="176" y="78" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="72" fill="#FFFFFF" letter-spacing="-1">ELEC</text>
+  <!-- Sous-titre -->
+  <text x="16" y="108" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#F5A800" letter-spacing="3">ÉLECTRICITÉ GÉNÉRALE</text>
+</svg>
