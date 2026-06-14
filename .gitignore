@@ -1,0 +1,5 @@
+# Vercel
+.vercel
+
+# Node (si des dépendances sont ajoutées plus tard)
+node_modules/

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://castelsarrasin.jm-elec.fr/sitemap.xml
