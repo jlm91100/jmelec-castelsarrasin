@@ -20,6 +20,7 @@ Site statique mobile-first pour `castelsarrasin.jm-elec.fr`.
   - `GOOGLE_PLACES_API_KEY` (alias acceptés : `GOOGLE_API_KEY`, `GOOGLE_MAPS_API_KEY`, `PLACES_API_KEY`)
   - `GOOGLE_PLACE_ID` (alias accepté : `PLACE_ID`)
   - optionnel : `REVIEWS_MIN_RATING` (défaut 4), `REVIEWS_MAX` (défaut 5)
+  - optionnel : `REVIEWS_EXCLUDE` — termes (séparés par virgule) qui excluent un avis si son texte les contient en mot entier. Défaut `91` (masque la mention de la zone Essonne).
 - Activer la **Places API (New)** dans Google Cloud. Restreindre la clé par **API = Places API (New)** (sur Vercel les IP sortantes ne sont pas stables, donc la restriction par IP n'est pas fiable sauf egress dédié ; ne pas restreindre par référent HTTP car l'appel est côté serveur).
 - L'API Places renvoie **5 avis maximum** ; pour tous les avis il faudrait l'API Business Profile (accès propriétaire).
 - Le bloc reste masqué tant que les variables ne sont pas définies ou si l'API ne répond pas (dégradation propre).

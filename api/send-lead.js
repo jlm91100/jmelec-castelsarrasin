@@ -76,24 +76,12 @@ module.exports = async (req, res) => {
     });
 
     if (!r.ok) {
-      let detail = "";
-      try { detail = await r.text(); } catch (e) {}
-      if (req.query && req.query.debug === "jmelec-diag") {
-        res.setHeader("Content-Type", "application/json; charset=utf-8");
-        res.status(200).json({ resendStatus: r.status, resendError: detail, from: from, to: to });
-        return;
-      }
       redirect("/contact.html?erreur=envoi");
       return;
     }
 
     redirect("/merci.html");
   } catch (e) {
-    if (req.query && req.query.debug === "jmelec-diag") {
-      res.setHeader("Content-Type", "application/json; charset=utf-8");
-      res.status(200).json({ exception: String(e && e.message ? e.message : e), from: from, to: to });
-      return;
-    }
     redirect("/contact.html?erreur=envoi");
   }
 };
