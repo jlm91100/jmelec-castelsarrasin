@@ -20,6 +20,19 @@ module.exports = async (req, res) => {
 
   const minRating = Number(process.env.REVIEWS_MIN_RATING || 4);
   const maxReviews = Number(process.env.REVIEWS_MAX || 5);
+  // Exclut un avis si son texte contient un de ces termes (mot entier),
+  // ex. masquer la mention d'une autre zone. Configurable via REVIEWS_EXCLUDE.
+  const excludeTerms = (process.env.REVIEWS_EXCLUDE || "91")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+  const isExcluded = (txt) => {
+    const t = String(txt || "").toLowerCase();
+    return excludeTerms.some((term) => {
+      const esc = term.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      return new RegExp("\\b" + esc + "\\b").test(t);
+    });
+  };
 
   res.setHeader("Content-Type", "application/json; charset=utf-8");
 
@@ -50,6 +63,14 @@ module.exports = async (req, res) => {
 
     const reviews = (data.reviews || [])
       .filter((rv) => (rv.rating || 0) >= minRating)
+      .filter(
+        (rv) =>
+          !isExcluded(
+            (rv.text && rv.text.text) ||
+              (rv.originalText && rv.originalText.text) ||
+              ""
+          )
+      )
       .slice(0, maxReviews)
       .map((rv) => ({
         author:
