@@ -1,0 +1,26 @@
+{
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/depannage", "destination": "/depannage-electrique.html", "permanent": true },
+    { "source": "/depannage.html", "destination": "/depannage-electrique.html", "permanent": true },
+    { "source": "/renovation", "destination": "/electricite-generale.html", "permanent": true },
+    { "source": "/renovation.html", "destination": "/electricite-generale.html", "permanent": true },
+    { "source": "/conformite", "destination": "/electricite-generale.html", "permanent": true },
+    { "source": "/conformite.html", "destination": "/electricite-generale.html", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ]
+}
