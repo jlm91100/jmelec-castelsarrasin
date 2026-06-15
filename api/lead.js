@@ -156,13 +156,18 @@ function redirect(res, location) {
   res.statusCode = 200;
   res.setHeader("Content-Type", "text/html; charset=utf-8");
   res.setHeader("Cache-Control", "no-store");
-  const target = htmlEscape(location);
+  // Param unique "t" : evite qu'un navigateur ayant un ancien 405 en cache pour
+  // cette URL (suite a l'ancien comportement 303 re-POSTe) ne reserve la reponse
+  // perimee. Chaque redirection vise ainsi une URL jamais mise en cache.
+  const sep = location.indexOf("?") === -1 ? "?" : "&";
+  const dest = location + sep + "t=" + Date.now();
+  const target = htmlEscape(dest);
   res.end(
     "<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\">" +
     "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
     "<meta http-equiv=\"refresh\" content=\"0; url=" + target + "\">" +
     "<title>Redirection…</title></head><body>" +
-    "<script>window.location.replace(" + JSON.stringify(location) + ");</script>" +
+    "<script>window.location.replace(" + JSON.stringify(dest) + ");</script>" +
     "<p>Votre demande a bien été envoyée. <a href=\"" + target + "\">Continuer</a></p>" +
     "</body></html>"
   );
