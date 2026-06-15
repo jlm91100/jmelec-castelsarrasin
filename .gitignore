@@ -3,3 +3,10 @@
 
 # Node (si des dépendances sont ajoutées plus tard)
 node_modules/
+
+# Documents internes (ne pas déployer publiquement)
+.env.example
+launch-checklist.md
+meta-ads-creative-brief.md
+tracking-checklist.md
+vercel-deploy-guide.md
